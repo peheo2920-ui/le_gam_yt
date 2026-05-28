@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LTHONGGAM_YT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(180deg,#f7a9bf,#f8b5ca,#ffc7d7);
+min-height:100vh;
+overflow-x:hidden;
+color:white;
+}
+
+/* PAGES */
+
+.page{
+display:none;
+width:100%;
+max-width:430px;
+margin:auto;
+padding:20px 18px 120px;
+animation:fade 0.4s ease;
+}
+
+.page.active{
+display:block;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(15px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:28px;
+}
+
+.logo{
+font-size:25px;
+font-weight:700;
+text-shadow:0 4px 10px rgba(255,255,255,0.3);
+}
+
+.menu-btn,
+.back-btn{
+width:56px;
+height:56px;
+border:none;
+border-radius:22px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+color:white;
+font-size:28px;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(255,105,180,0.2);
+}
+
+/* MENU */
+
+#menu{
+position:fixed;
+top:0;
+right:-100%;
+width:82%;
+height:100vh;
+background:rgba(255,255,255,0.18);
+backdrop-filter:blur(20px);
+padding:30px 22px;
+transition:0.4s;
+z-index:999;
+box-shadow:-10px 0 30px rgba(255,105,180,0.25);
+overflow-y:auto;
+}
+
+#menu.active{
+right:0;
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.25);
+display:none;
+z-index:998;
+}
+
+.overlay.active{
+display:block;
+}
+
+.close{
+font-size:35px;
+margin-bottom:25px;
+cursor:pointer;
+}
+
+.menu-title{
+font-size:30px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+.menu-item{
+padding:18px 20px;
+border-radius:24px;
+margin-bottom:18px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+font-size:18px;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 8px 20px rgba(255,105,180,0.18);
+transition:0.3s;
+}
+
+.menu-item:hover{
+transform:translateX(6px);
+}
+
+/* BADGE */
+
+.badge{
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding:12px 20px;
+border-radius:50px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+margin-bottom:35px;
+box-shadow:0 8px 20px rgba(255,105,180,0.2);
+}
+
+.dot{
+width:18px;
+height:18px;
+border-radius:50%;
+background:#ff6da9;
+}
+
+/* TITLE */
+
+.title{
+text-align:center;
+margin-bottom:35px;
+}
+
+.title h2{
+font-size:24px;
+line-height:1.5;
+font-weight:800;
+text-shadow:0 4px 10px rgba(255,255,255,0.35);
+}
+
+.title h1{
+margin-top:10px;
+font-size:46px;
+line-height:1.2;
+font-weight:800;
+text-shadow:0 6px 15px rgba(255,255,255,0.35);
+}
+
+/* PROFILE */
+
+.profile{
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(12px);
+border-radius:38px;
+padding:30px 24px;
+box-shadow:
+0 12px 30px rgba(255,105,180,0.2),
+inset 0 1px 1px rgba(255,255,255,0.2);
+}
+
+.profile p{
+font-size:18px;
+line-height:2;
+margin-bottom:35px;
+color:#fff9fb;
+}
+
+/* CTA BUTTON */
+
+.contact-btn{position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+width:90%;
+max-width:390px;
+height:72px;
+border:none;
+border-radius:30px;
+background:white;
+color:#f06c99;
+font-size:24px;
+font-weight:700;
+cursor:pointer;
+box-shadow:0 12px 30px rgba(255,105,180,0.25);
+}
+
+/* SUBJECT PAGE */
+
+.subject-banner{
+padding:28px;
+border-radius:35px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+text-align:center;
+margin-bottom:28px;
+box-shadow:0 12px 25px rgba(255,105,180,0.2);
+}
+
+.subject-banner h1{
+font-size:34px;
+margin-bottom:10px;
+}
+
+.subject-banner p{
+font-size:16px;
+line-height:1.8;
+}
+
+.card{
+background:rgba(255,255,255,0.15);
+padding:24px;
+border-radius:32px;
+margin-bottom:22px;
+backdrop-filter:blur(10px);
+box-shadow:0 10px 25px rgba(255,105,180,0.18);
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card h2{
+margin-bottom:10px;
+font-size:24px;
+}
+
+.card p{
+font-size:16px;
+line-height:1.8;
+}
+
+/* CONTACT PAGE */
+
+.contact-title{
+font-size:38px;
+font-weight:800;
+text-align:center;
+margin-bottom:35px;
+line-height:1.4;
+}
+
+.contact-box{
+display:flex;
+align-items:center;
+gap:18px;
+padding:24px;
+border-radius:30px;
+background:rgba(255,255,255,0.15);
+margin-bottom:22px;
+backdrop-filter:blur(12px);
+box-shadow:0 10px 25px rgba(255,105,180,0.2);
+cursor:pointer;
+text-decoration:none;
+color:white;
+}
+
+.contact-icon{
+width:60px;
+height:60px;
+border-radius:50%;
+background:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+}
+
+.contact-text{
+font-size:19px;
+font-weight:600;
+}
+
+/* METHOD PAGE */
+
+.method-card{
+background:rgba(255,255,255,0.14);
+padding:28px;
+border-radius:35px;
+backdrop-filter:blur(12px);
+box-shadow:0 10px 25px rgba(255,105,180,0.2);
+}
+
+.method-item{
+padding:18px 0;
+border-bottom:1px dashed rgba(255,255,255,0.3);
+font-size:17px;
+line-height:1.9;
+}
+
+.method-item:last-child{
+border-bottom:none;
+}
+
+@media(max-width:480px){
+
+.title h1{
+font-size:40px;
+}
+
+.profile p{
+font-size:16px;
+}
+
+.contact-title{
+font-size:32px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<!-- MENU -->
+
+<div id="menu">
+
+<div class="close" onclick="closeMenu()">✕</div>
+
+<div class="menu-title">
+MENU
+</div>
+
+<div class="menu-item" onclick="showPage('home')">
+🏠 Trang chủ
+</div>
+
+<div class="menu-item" onclick="showSubject('van')">
+📚 Ngữ Văn
+</div>
+
+<div class="menu-item" onclick="showSubject('anh')">
+✨ Tiếng Anh
+</div>
+
+<div class="menu-item" onclick="showSubject('toan')">
+➗ Toán
+</div>
+
+<div class="menu-item" onclick="showSubject('khac')">
+📁 Các môn khác
+</div>
+
+<div class="menu-item" onclick="showPage('contact')">
+💌 Liên hệ
+</div>
+
+</div>
+
+<!-- HOME -->
+
+<div class="page active" id="home">
+
+<div class="header">
+
+<div class="logo">
+LTHONGGAM_YT
+</div>
+
+<button class="menu-btn" onclick="openMenu()">
+☰
+</button>
+
+</div>
+
+<div class="badge">
+<div class="dot"></div>
+<span>Welcome to my website.</span>
+</div><div class="title">
+
+<h2>
+Hi EVERYONE, MY FULL NAME
+</h2>
+
+<h1>
+♥ LÊ THỊ HỒNG GẤM ♥
+</h1>
+
+</div>
+
+<div class="profile">
+
+<p>
+Là 1 học sinh lớp 12 đam mê Kinh tế, Tiếng Anh, Ngữ văn và yêu thích Công nghệ thông tin. Luôn tìm tòi những phương pháp học thông minh, hiện đại và ứng dụng công nghệ để phát triển bản thân mỗi ngày.
+</p>
+
+<p>
+Đây là một nền tảng học tập cá nhân do mình xây dựng — nơi bạn có thể trò chuyện trực tiếp, nhận tài liệu phù hợp và được hỗ trợ tìm ra cách học hiệu quả hơn cho riêng mình.
+</p>
+
+<p>
+Mục tiêu của mình là giúp việc học Kinh tế, Tiếng Anh, Ngữ văn và các kỹ năng khác trở nên dễ tiếp cận, thông minh và cá nhân hóa hơn với mỗi người. Ngoài ra, nền tảng cũng hỗ trợ tài liệu cho nhiều môn học khác, ôn thi và chia sẻ phương pháp học tập hiệu quả.
+</p>
+
+<p>
+Mình cũng mong muốn tìm kiếm những người cùng đam mê học tập, phát triển bản thân và sẵn sàng đồng hành cùng nhau trên hành trình trưởng thành.
+</p>
+
+<p style="margin-bottom:0;">
+Không chỉ là học kiến thức, đây còn là nơi để kết nối, khám phá tư duy mới và xây dựng phiên bản tốt hơn của chính mình mỗi ngày.
+</p>
+
+</div>
+
+<button class="contact-btn" onclick="showPage('contact')">
+💌 Liên hệ ngay
+</button>
+
+</div>
+
+<!-- SUBJECT PAGE -->
+
+<div class="page" id="subjectPage">
+
+<div class="header">
+
+<button class="back-btn" onclick="openMenu()">
+☰
+</button>
+
+<div class="logo">
+LTHONGGAM_YT
+</div>
+
+<button class="back-btn" onclick="showPage('home')">
+←
+</button>
+
+</div>
+
+<div class="subject-banner">
+
+<h1 id="subjectTitle">
+Môn học
+</h1>
+
+<p>
+Danh sách các tài liệu học tập, ôn thi và phương pháp hiệu quả.
+</p>
+
+</div>
+
+<div class="card" onclick="openDrive()">
+
+<h2>
+📚 Tài liệu tham khảo
+</h2>
+
+<p>
+Nhấn để mở Google Drive tài liệu học tập.
+</p>
+
+</div>
+
+<div class="card" onclick="showPage('method')">
+
+<h2>
+✨ Phương pháp học
+</h2>
+
+<p>
+Hướng dẫn cách học thông minh, hiệu quả và hiện đại.
+</p>
+
+</div>
+
+</div>
+
+<!-- METHOD PAGE -->
+
+<div class="page" id="method">
+
+<div class="header">
+
+<button class="back-btn" onclick="showPage('home')">
+←
+</button>
+
+<div class="logo">
+LTHONGGAM_YT
+</div>
+
+<button class="menu-btn" onclick="openMenu()">
+☰
+</button>
+
+</div>
+
+<div class="subject-banner">
+
+<h1>
+✨ PHƯƠNG PHÁP HỌC
+</h1>
+
+<p>
+Những cách học hiệu quả giúp bạn phát triển bản thân tốt hơn.
+</p>
+
+</div>
+
+<div class="method-card">
+
+<div class="method-item">
+📖 Đọc kỹ tài liệu trước khi học để hiểu nội dung tổng quát.
+</div>
+
+<div class="method-item">
+📝 Ghi chú các ý quan trọng bằng sơ đồ hoặc highlight màu sắc.
+</div>
+
+<div class="method-item">⏰ Học đều đặn mỗi ngày thay vì học dồn sát ngày thi.
+</div>
+
+<div class="method-item">
+💌 Có thể liên hệ trực tiếp để được hỗ trợ thêm tài liệu phù hợp.
+</div>
+
+<div class="method-item">
+🌸 Chúc bạn luôn đạt kết quả học tập thật tốt và thành công.
+</div>
+
+</div>
+
+</div>
+
+<!-- CONTACT -->
+
+<div class="page" id="contact">
+
+<div class="header">
+
+<button class="back-btn" onclick="showPage('home')">
+←
+</button>
+
+<div class="logo">
+LTHONGGAM_YT
+</div>
+
+<button class="menu-btn" onclick="openMenu()">
+☰
+</button>
+
+</div>
+
+<div class="contact-title">
+HỎI VÀ ĐÁP<br>LIÊN HỆ
+</div>
+
+<a class="contact-box" href="https://zalo.me/0977418122" target="_blank">
+
+<div class="contact-icon">
+💬
+</div>
+
+<div class="contact-text">
+Zalo: @977418122
+</div>
+
+</a>
+
+<a class="contact-box" href="https://www.facebook.com/share/1BcpnEhNwG/?mibextid=wwXIfr" target="_blank">
+
+<div class="contact-icon">
+📘
+</div>
+
+<div class="contact-text">
+FB: Lê Gấm
+</div>
+
+</a>
+
+<a class="contact-box" href="https://www.tiktok.com/@legam_ziti?_r=1&_t=ZS-96hhTRiPUDH" target="_blank">
+
+<div class="contact-icon">
+🎵
+</div>
+
+<div class="contact-text">
+TikTok: @legam_ziti
+</div>
+
+</a>
+
+</div>
+
+<script>
+
+/* MENU */
+
+function openMenu(){
+document.getElementById("menu").classList.add("active");
+document.getElementById("overlay").classList.add("active");
+}
+
+function closeMenu(){
+document.getElementById("menu").classList.remove("active");
+document.getElementById("overlay").classList.remove("active");
+}
+
+/* PAGE */
+
+function showPage(pageId){
+
+document.querySelectorAll(".page").forEach(page=>{
+page.classList.remove("active");
+});
+
+document.getElementById(pageId).classList.add("active");
+
+closeMenu();
+
+window.scrollTo(0,0);
+}
+
+/* SUBJECTS */
+
+let currentDrive = "";
+
+function showSubject(subject){
+
+showPage("subjectPage");
+
+const title = document.getElementById("subjectTitle");
+
+if(subject === "van"){
+title.innerHTML = "📚 MÔN NGỮ VĂN";
+currentDrive = "https://drive.google.com/drive/folders/1tpoeRTWvwAYmgWESgNhhp5gWA-9d-GpU";
+}
+
+if(subject === "anh"){
+title.innerHTML = "✨ MÔN TIẾNG ANH";
+currentDrive = "https://drive.google.com/drive/folders/1fWlkWhbx53b7dnBrSdwDqrCHL_12guuB";
+}
+
+if(subject === "toan"){
+title.innerHTML = "➗ MÔN TOÁN";
+currentDrive = "https://drive.google.com/drive/folders/1j7Cx1HDFpGmNGfb-zQQVJbxZD30hcyWy";
+}
+
+if(subject === "khac"){
+title.innerHTML = "📁 CÁC MÔN KHÁC";
+currentDrive = "https://drive.google.com/drive/folders/1BMT8kqCtn3AIO2dBNusI0oiA2_znS3C6";
+}
+
+}
+
+/* OPEN DRIVE */
+
+function openDrive(){
+window.open(currentDrive,"_blank");
+}
+
+</script>
+
+</body>
+</html><!-- THÊM ĐOẠN NÀY VÀO <head> -->
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#ffb6c1">
+
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<style>
+
+/* FLOATING HEARTS */
+
+.hearts{
+position:fixed;
+inset:0;
+overflow:hidden;
+pointer-events:none;
+z-index:0;
+}
+
+.heart{
+position:absolute;
+bottom:-50px;
+font-size:20px;
+animation:floatHeart linear infinite;
+opacity:0.7;
+}
+
+@keyframes floatHeart{
+
+0%{
+transform:translateY(0) rotate(0deg);
+opacity:0;
+}
+
+10%{
+opacity:0.7;
+}
+
+100%{
+transform:translateY(-120vh) rotate(360deg);
+opacity:0;
+}
+
+}
+
+/* DARK MODE */
+
+body.dark{
+background:linear-gradient(180deg,#3d2b3a,#4b3350,#5b3b61);
+}
+
+body.dark .profile,
+body.dark .card,
+body.dark .subject-banner,
+body.dark .contact-box,
+body.dark .method-card,
+body.dark .menu-item,
+body.dark #menu{
+background:rgba(255,255,255,0.08);
+}
+
+body.dark .contact-btn{
+background:#ff8db6;
+color:white;
+}
+
+/* SUBJECT COLORS */
+
+.subject-van{
+background:linear-gradient(180deg,#ffb7c5,#ffc7d5);
+}
+
+.subject-anh{
+background:linear-gradient(180deg,#b7cfff,#d3e2ff);
+}
+
+.subject-toan{
+background:linear-gradient(180deg,#d9c2ff,#efe0ff);
+}
+
+.subject-khac{
+background:linear-gradient(180deg,#ffd3b0,#ffe6d2);
+}
+
+/* 3D ICON */
+
+.icon3d{
+width:65px;
+height:65px;
+border-radius:22px;
+background:rgba(255,255,255,0.2);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+box-shadow:
+0 10px 20px rgba(255,255,255,0.15),
+inset 0 1px 1px rgba(255,255,255,0.2);
+margin-bottom:18px;
+}
+
+/* DARK MODE BUTTON */
+
+.dark-btn{
+position:fixed;
+top:20px;
+left:20px;
+width:55px;
+height:55px;
+border:none;
+border-radius:50%;
+background:white;
+color:#ff6ca8;
+font-size:24px;
+cursor:pointer;
+z-index:999;
+box-shadow:0 10px 20px rgba(255,105,180,0.2);
+}
+
+</style>
+
+<!-- THÊM SAU <body> -->
+
+<div class="hearts">
+
+<div class="heart" style="left:5%;animation-duration:12s;">💖</div>
+<div class="heart" style="left:18%;animation-duration:18s;">✨</div>
+<div class="heart" style="left:30%;animation-duration:15s;">💗</div>
+<div class="heart" style="left:45%;animation-duration:20s;">🌸</div>
+<div class="heart" style="left:60%;animation-duration:16s;">✨</div>
+<div class="heart" style="left:75%;animation-duration:13s;">💖</div>
+<div class="heart" style="left:88%;animation-duration:17s;">🌸</div>
+
+</div>
+
+<!-- NÚT DARK MODE -->
+
+<button class="dark-btn" onclick="toggleDarkMode()">
+🌙
+</button>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+/* DARK MODE */
+
+function toggleDarkMode(){
+
+document.body.classList.toggle("dark");
+
+localStorage.setItem(
+"darkmode",
+document.body.classList.contains("dark")
+);
+
+}
+
+/* LOAD DARK MODE */
+
+if(localStorage.getItem("darkmode") === "true"){
+document.body.classList.add("dark");
+}
+
+/* SAVE CURRENT PAGE */
+
+function showPage(pageId){document.querySelectorAll(".page").forEach(page=>{
+page.classList.remove("active");
+});
+
+document.getElementById(pageId).classList.add("active");
+
+localStorage.setItem("currentPage",pageId);
+
+closeMenu();
+
+window.scrollTo(0,0);
+
+}
+
+/* LOAD LAST PAGE */
+
+window.onload = function(){
+
+const savedPage = localStorage.getItem("currentPage");
+
+if(savedPage){
+
+document.querySelectorAll(".page").forEach(page=>{
+page.classList.remove("active");
+});
+
+document.getElementById(savedPage).classList.add("active");
+
+}
+
+}
+
+/* PWA */
+
+if('serviceWorker' in navigator){
+
+navigator.serviceWorker.register('sw.js');
+
+}
+
+</script>
